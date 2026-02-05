@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>For You ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",system-ui,sans-serif}
+body{
+  height:100vh;
+  background:radial-gradient(circle at top,#ff9aa2,#ff6f91,#845ec2);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff
+}
+.container{
+  width:100%;max-width:420px;height:100%;
+  padding:28px;text-align:center;
+  display:flex;align-items:center;justify-content:center
+}
+.screen{display:none;animation:fade 1.2s ease}
+.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+h1{font-size:28px;margin-bottom:18px;font-weight:600}
+p{font-size:18px;line-height:1.55;opacity:.95}
+button{
+  margin-top:28px;padding:14px 30px;border-radius:28px;border:none;
+  font-size:17px;cursor:pointer;background:#fff;color:#ff2d55;
+  transition:.25s
+}
+button:hover{transform:scale(1.05)}
+.actions{margin-top:36px;position:relative;height:110px}
+.yes{background:#ff2d55;color:#fff}
+.no{position:absolute;background:#fff;color:#ff2d55}
+.heart{
+  position:absolute;bottom:-20px;font-size:22px;opacity:.75;
+  animation:float 5s linear infinite
+}
+@keyframes float{to{transform:translateY(-120vh)}}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <!-- Screen 1 -->
+  <div class="screen active">
+    <h1>Kasturiiiiiiiiii❤️</h1>
+    <p>
+      I made this just for you.<br>
+      Because some feelings deserve more than words.
+    </p>
+    <button onclick="next()">Tap to continue</button>
+  </div>
+
+  <!-- Screen 2 -->
+  <div class="screen">
+    <p>
+      Somewhere between conversations and laughter,<br>
+      you became someone my heart feels calm with.<br><br>
+      Being with you feels easy…<br>
+      like everything is exactly where it should be.
+    </p>
+    <button onclick="next()">Next</button>
+  </div>
+
+  <!-- Screen 3 -->
+  <div class="screen">
+    <p>
+      You don’t just make me smile.<br>
+      You make moments feel meaningful.<br><br>
+      Even the simplest days feel brighter<br>
+      when you’re part of them.
+    </p>
+    <button onclick="next()">Next</button>
+  </div>
+
+  <!-- Screen 4 -->
+  <div class="screen">
+    <p>
+      I find myself thinking about you<br>
+      more than I ever planned to.<br><br>
+      About your smile,<br>
+      your voice,<br>
+      and the way you quietly mean so much to me.
+    </p>
+    <button onclick="next()">💗</button>
+  </div>
+
+  <!-- Screen 5 -->
+  <div class="screen">
+    <p>
+      So before this day ends,<br>
+      there’s something my heart wants to ask you…
+    </p>
+    <button onclick="next()">✨</button>
+  </div>
+
+  <!-- Final -->
+  <div class="screen">
+    <h1>Will you be my Valentine? 🌹</h1>
+    <p style="margin-top:10px">
+      Not just for today,<br>
+      but for the moments we choose to make special together.
+    </p>
+    <div class="actions">
+      <button class="yes" onclick="yes()">Yes 💖</button>
+      <button class="no" id="no">No 🙈</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const screens=[...document.querySelectorAll(".screen")];
+let i=0;
+function next(){screens[i].classList.remove("active");i++;screens[i].classList.add("active");}
+
+// playful NO button
+const no=document.getElementById("no");
+no.addEventListener("mouseover",moveNo);
+no.addEventListener("click",moveNo);
+function moveNo(){
+  no.style.transform=`translate(${Math.random()*220-110}px,${Math.random()*80-40}px)`
+}
+
+// YES moment
+function yes(){
+  document.body.innerHTML=`
+  <div style="height:100vh;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle,#ff758c,#ff7eb3);color:#fff;text-align:center;padding:20px">
+    <div>
+      <h1>You just made my heart very, very happy 💞</h1>
+      <p style="margin-top:14px;font-size:18px">
+        Happy Valentine’s Day,<br>my favourite person ❤️
+      </p>
+    </div>
+  </div>`;
+}
+
+// floating hearts
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";h.textContent="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=3+Math.random()*3+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},450);
+</script>
+</body>
+</html>
